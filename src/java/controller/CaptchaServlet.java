@@ -15,6 +15,8 @@ public class CaptchaServlet extends HttpServlet
             throws ServletException, IOException 
     {
         response.sendRedirect("login.jsp");
+        
+        //test
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
