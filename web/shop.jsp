@@ -14,7 +14,6 @@
             	<li><form action="LogoutServlet">
                         <input class="logout" type="submit" value="Logout"></form></li>
                 <li><a class="nav-link" href="orders.jsp">My Orders</a></li>
-                <li><a class="nav-link" href="cart.jsp">Cart</a></li>
                 <li><a class="nav-link" href="shop.jsp">Shop</a></li>      
             </ul>
       	</div>

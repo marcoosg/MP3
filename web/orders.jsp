@@ -12,7 +12,6 @@
             <!-- <label class="logo"><a href="shop.jsp"><img src="images/logo.png"/>ToteLand</label></a>!-->
             <ul>
                 <li><a class="nav-link" href="shop.jsp">Shop</a></li>
-                <li><a class="nav-link" href="cart.jsp">Cart</a></li>
                 <li><a class="nav-link" href="orders.jsp">My Orders</a></li>
                 <li><form action="LogoutServlet">
                         <input class="logout nav-link" type="submit" value="Logout">
