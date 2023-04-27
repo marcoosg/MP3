@@ -9,10 +9,17 @@
     </head>
     <body>
         <main>
+            <div class="navbar">
+                <div>GameShop</div>               
+            </div>
+            
             <div class="login-page">
                 
                 <div class="form">
                     <h1>Captcha</h1>
+                    <p>To continue, type the</p>
+                    <p>characters you see in</p>
+                    <p>the picture.</p>
                     <img src="images/captcha.png"/>
                   <form class="login-form" action="CaptchaServlet" method="post">
                     <input type="text" name="captchaText" placeholder="Captcha" required/>
@@ -23,7 +30,24 @@
         </main>
     </body>
     <style>
-                
+
+        @font-face {
+            font-family: "dogicapixel";
+            src: url("fonts/dogicapixel.ttf");
+        }
+
+        .navbar {
+            background-color: green;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;           
+            padding: 10px;
+            height: 60px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        
 .login-page {
   width: 360px;
   padding: 8% 0 0;
@@ -31,7 +55,7 @@
 }
 img {
   width: 200px;
-  height: 300px;
+  height: 200px;
   object-fit: contain;
 }
 .form {
@@ -56,10 +80,10 @@ img {
   font-size: 14px;
 }
 .form button {
-  font-family: "Roboto", sans-serif;
+  font-family: "dogicapixel", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: green;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -118,10 +142,7 @@ img {
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
-  background: rgb(141,194,111);
-  background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%);
-  font-family: "Roboto", sans-serif;
+  font-family: "dogicapixel", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }

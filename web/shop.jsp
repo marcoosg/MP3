@@ -1,197 +1,266 @@
+<!DOCTYPE html>
+
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Shop</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    
-    <body>
-    	<!-- <label class="logo"><a href="shop.jsp"><img src="images/logo.png"/>ToteLand</label></a>!-->
-            
-       	<div class="topbar">
-            <ul>
-            	<li><form action="LogoutServlet">
-                        <input class="logout" type="submit" value="Logout"></form></li>
-                <li><a class="nav-link" href="orders.jsp">My Orders</a></li>
-                <li><a class="nav-link" href="shop.jsp">Shop</a></li>      
-            </ul>
-      	</div>
-         
-        <div class="bodybox">
-        
-        	<div class="banner"> IMG HERE WELCOME MESSAGE </div>
-            
-            <div class="gamelistbox">
-            
-            	<h1 class="gamelisttitle">Our Products</h1>
-                
-            	<div class="gameitems">
-                    <div class="gameimg"></div>
-                    <div class="title-price">
-                    	<h2 class="gametitle"> GAME4 </h2>
-                      	<h3 class="gameprice"> $100 </h3>
-                    </div>
-                </div>
-                
-                <div class="gameitems">
-                    <div class="gameimg"></div>
-                    <div class="title-price">
-                    	<h2 class="gametitle"> GAME4 </h2>
-                      	<h3 class="gameprice"> $100 </h3>
-                    </div>
-                </div>
-                
-               <div class="gameitems">
-                    <div class="gameimg"></div>
-                    <div class="title-price">
-                    	<h2 class="gametitle"> GAME4 </h2>
-                      	<h3 class="gameprice"> $100 </h3>
-                    </div>
-                </div>
-                
-               <div class="gameitems">
-                    <div class="gameimg"></div>
-                    <div class="title-price">
-                    	<h2 class="gametitle"> GAME4 </h2>
-                      	<h3 class="gameprice"> $100 </h3>
-                    </div>
-                </div>
-       
-       		</div>
-            
-            <div class="cartbox">
-            
-           		<h1 class="gamelisttitle">Cart</h1>
-                
-                <div class="cartlabels">
-               
-                
-            </div>
-   
-        </div>
-      
-    </body>
-    
+	<title>GameShop</title>
 	<style>
-    
-    * {
-    box-sizing: border-box;
-    }
-    
-    .logout {
-   	width: 100px;
-	background: #9999CC;
-	color: black;
-	border: none;
-	padding:10px;
-	border-radius: 20px;
-	text-shadow: none;
-	}
-	
-    .logout:hover {
-	background: #808080;
-	border: 1px solid #eee;
-	border-radius: 20px;
-	border: none;
-    }
+                /* Font */
+                @font-face {
+                    font-family: "dogicapixel";
+                    src: url("fonts/dogicapixel.ttf");
+                }
 
-    body {
-  	background-color: #303030;
-    margin: 0;
-    align-content: center;
-	}
-    
-    .topbar {
-  	overflow: hidden;
-    padding-right: 25px;
-	}
-    
-    .topbar li {
-    float: right;
-    display:block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 20px;
-    padding-bottom: 0px;
-    text-decoration: none;
+                * {
+                    font-family: "dogicapixel", sans-serif;
+                }
+                
+		/* Style for navbar */
+		.navbar {
+			background-color: green;
+			color: white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px;
+			height: 60px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
 
-    }
+		/* Style for logout button */
+		.navbar button {
+			background-color: white;
+			color: green;
+			border: none;
+			padding: 10px;
+			border-radius: 20px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+			width: 100px;
+			height: 40px;
+		}
+
+		.navbar button:hover {
+			background-color: white;
+			color: red;
+		}
+		
+		.gamelisttitle {
+		    text-align: center;
+		}
+
+		/* Style for game cards */
+		.game-section {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: flex-start;
+			padding: 20px;
+		}
+
+		.game-card {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px grey;
+			display: inline-block;
+			margin: 10px;
+			margin-top: 0px;
+			padding: 10px;
+			width: 200px;
+			height: 300px;
+			overflow: hidden;
+			text-align: center;
+			height: 365px;
+		}
+
+		.game-card img {
+		    margin-top: 20px;
+			max-width: 100%;
+			max-height: 80%;
+			object-fit: cover;
+		}
     
-    .topbar a {
-    color: white;
-    }
-    
-    .nav-link:hover {
-  	color: #9999CC ;
-	}
-    
-    .nav-link {
-  	text-decoration: none;
-	}
-    
-    .bodybox {
-    background-color: #404040;
-    padding: 50px;
-    margin: 40px;
-    border-radius: 25px;
-    }
-    
-    .banner {
-    background-color: #9999CC;
-	padding: 50px;
-    margin: 20px;
-    border-radius: 25px;
-    height: 250px;
-    }
-    
-    .gamelistbox {
-    background-color: 9999CC;
-	padding: 50px;
-    padding-top: 20px;
-    margin: 20px;
-    margin-top: 40px;
-    border-radius: 25px;
-    }
-    
-    .gamelisttitle {
-    text-align: center;
-    padding-bottom: 10px;
-    }
-    
-    .gameitems {
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    }
-    
-    .gameimg {
-    height: 150px;
-    width: 120px;
-    border-style: solid;
-    }
-    
-    .gametitle {
-	padding-top: 25px;
-    padding-left: 20px;
-    }
-    
-    .gameprice {
-    padding-left: 20px;
-    }
-    
-    .title-price {
-    }
-    
-    .cartbox {
-    background-color: 9999CC;
-    padding: 50px;
-    padding-top: 20px;
-    margin: 20px;
-    margin-top: 40px;
-    border-radius: 25px;
-    }
- 
-    </style>
-    
+		/* Style for add to cart button */
+		.add-to-cart {
+			background-color: green;
+			color: white;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 150px;
+			transition: background-color 0.3s;
+                        font-size: 11px;
+		}
+
+		.add-to-cart:hover {
+			background-color: darkgreen;
+		}
+
+		/* Style for image container */
+		.image-container {
+			background-color: #f0f0f0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+		}
+
+		.image-container img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			
+		}
+
+		/* Style for shopping cart container */
+		.cart-container {
+			background-color: #f0f0f0;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px grey;
+			padding: 20px;
+			padding-top: 0px;
+			margin-top: 20px;
+			margin-left: 150px;
+			margin-right: 150px;
+		}
+
+		.cart-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+		}
+
+		.cart-table th,
+		.cart-table td {
+			padding: 5px;
+			text-align: center;
+		}
+
+		.cart-table th {
+			background-color: green;
+			color: white;
+			font-weight: bold;
+		}
+
+		.cart-table tr:nth-child(even) {
+			background-color: #e0e0e0;
+		}
+
+		.cart-remove {
+			color: red;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.cart-remove:hover {
+			text-decoration: underline;
+		}
+		.checkoutbox {
+		    text-align: center;
+		}
+		.checkout {
+		    background-color: green;
+			color: white;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 250px;
+			transition: background-color 0.3s;
+			margin-top: 50px;
+			
+		}
+		
+		.checkout:hover {
+			background-color: darkgreen;
+		}
+	</style>
+    </head>
+    <body>
+	<!-- Navbar -->
+	<div class="navbar">
+            <div>GameShop</div>
+            <button>Logout</button>
+	</div>
+
+        <div class="image-container">
+            <img src="https://via.placeholder.com/800x200.png?text=GameShop+Banner" alt="GameShop Banner">
+	</div>
+
+	<!-- Game section -->
+	<h2 class="gamelisttitle"> Featured Games </h2>
+	<div class="game-section">
+            <div class="game-card">
+		<img src="https://via.placeholder.com/150x200.png?text=Game+1" alt="Game 1">
+		<h3>Game 1</h3>
+		<p>$20.00</p>
+		<button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="game-card">
+		<img src="https://via.placeholder.com/150x200.png?text=Game+2" alt="Game 2">
+		<h3>Game 2</h3>
+		<p>$25.00</p>
+		<button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="game-card">
+		<img src="https://via.placeholder.com/150x200.png?text=Game+3" alt="Game 3">
+		<h3>Game 3</h3>
+		<p>$30.00</p>
+		<button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="game-card">
+		<img src="https://via.placeholder.com/150x200.png?text=Game+4" alt="Game 4">
+		<h3>Game 4</h3>
+		<p>$15.00</p>
+            	<button class="add-to-cart">Add to cart</button>
+            </div>
+	</div>
+
+	<!-- Image container -->
+
+
+	<!-- Shopping cart container -->
+	<div class="cart-container">
+            <h2>Shopping Cart</h2>
+            <table class="cart-table">
+		<thead>
+                    <tr>
+                   	<th>Title</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Remove</th>
+                    </tr>
+		</thead>
+		<tbody>
+                    <tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="cart-remove">X</td>
+                    </tr>
+                    <tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="cart-remove">X</td>
+                    </tr>
+                    <tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="cart-remove">X</td>
+                    </tr>
+                </tbody>
+            </table>
+		<div class="checkoutbox">
+			<button class="checkout">Proceed to Checkout</button>
+		</div>
+	</div>
+        
+    </body>
+
 </html>
