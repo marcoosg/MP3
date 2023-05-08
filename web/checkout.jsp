@@ -1,16 +1,97 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Checkout</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <h1>Your order has been checked out!</h1>
-        <form action="shop.jsp">
-            <input class="" type="submit" value="Confirm"><br>
-        </form>
-    </body>
+<head>
+	<title>Thank You for Ordering</title>
+	<style>
+	@font-face {
+                    font-family: "dogicapixel";
+                    src: url("fonts/dogicapixel.ttf");
+                }
+
+                * {
+                    font-family: "dogicapixel", sans-serif;
+                }
+        
+        .navbar {
+			background-color: green;
+			color: white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px;
+			height: 60px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+
+		/* Style for logout button */
+		.navbar button {
+			background-color: white;
+			color: green;
+			border: none;
+			padding: 10px;
+			border-radius: 20px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+			width: 100px;
+			height: 40px;
+		}
+
+		.navbar button:hover {
+			background-color: white;
+			color: red;
+		}        
+	    .container-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        }
+        
+		.box {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			border: 2px solid #ccc;
+		
+			padding: 80px;
+			border-radius: 10px;
+		}
+		.btn {
+			padding: 10px;
+			border: none;
+			background-color: #4CAF50;
+			color: white;
+			font-size: 16px;
+			margin: 5px;
+			cursor: pointer;
+			border-radius: 4px;
+		}
+		.btn:hover {
+			background-color: #3e8e41;
+		}
+		.btn-box {
+			display: flex;
+			flex-direction: row;
+		}
+	</style>
+</head>
+<body>
+    <div class="navbar">
+            <div>GameShop</div>
+            <button>Logout</button>
+	</div>
+    
+    <div class="container-box">
+	<div class="box">
+		<h1>Thank You for Ordering!</h1>
+		<div class="btn-box">
+			<button class="btn" >Back to Shop</button>
+			<button class="btn" >Logout</button>
+		</div>
+	</div>
+	</div>
+</body>
 </html>
