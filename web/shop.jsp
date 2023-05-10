@@ -251,8 +251,7 @@
                     </tr>
 		</thead>
 		<tbody>
-                 <%
-                     
+                <%   
                 Connection conn3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
                 try
                 {
@@ -281,13 +280,7 @@
                     System.out.println("SQLException error occured - " 
                                 + sqle.getMessage());
                 }
-                
-                
-                
-            %>
-                    
-                    
-                    
+                %>
                 </tbody>
             </table>
 		<div class="checkoutbox">
