@@ -101,7 +101,7 @@
 	<div class="box">
 		<h1>Thank You for Ordering!</h1>
 		<div class="btn-box">
-                        <form action="ShopServlet" method="post">
+                        <form action="shop.jsp" method="post">
                             <button class="btn" >Back to Shop</button>
                         </form>
 			

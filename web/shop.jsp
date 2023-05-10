@@ -1,3 +1,4 @@
+<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -216,20 +217,41 @@
 	<h2 class="gamelisttitle"> Featured Games </h2>
 	<div class="game-section">
             <%
-                ResultSet results = (ResultSet)request.getAttribute("results");
-                while (results.next()) 
-                { %>
+                Connection conn2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
+                try
+                {
+                     if (conn2 != null) 
+                    {
+
+                        Statement stmt = conn2.createStatement();
+                        ResultSet results = stmt.executeQuery("SELECT * FROM ITEM ORDER BY ITEM_ID asc");
+                        while (results.next()) 
+                        { 
+            %>
                     
-                    <div class="game-card">
-                        <img src="images/<%=results.getString("ITEM_IMG") %>">
-                        <h3><%=results.getString("ITEM_NAME") %></h3>
-                        <p>&#8369 <%=results.getString("ITEM_PRICE") %> .00</p>
-                        <button class="add-to-cart">Add to cart</button>
-                    </div>    
+                        <div class="game-card">
+                            <img src="images/<%=results.getString("ITEM_IMG") %>">
+                            <h3><%=results.getString("ITEM_NAME") %></h3>
+                            <p>&#8369 <%=results.getString("ITEM_PRICE") %> .00</p>
+                            <button class="add-to-cart">Add to cart</button>
+                        </div>    
                         
                         
-            <%	}
-                results.close();
+            <%
+                        
+                        } 
+                        results.close();
+                        conn2.close();
+                    }
+                }   
+                catch (SQLException sqle)
+                {
+                    System.out.println("SQLException error occured - " 
+                                + sqle.getMessage());
+                } 
+                
+                	
+                
             %>
             
            

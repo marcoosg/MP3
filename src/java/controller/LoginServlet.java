@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet
                             //username and password match, creat HttpSession
                             HttpSession session = request.getSession();
                             session.setAttribute("username", user);
-                            response.sendRedirect("ShopServlet");
+                            response.sendRedirect("shop.jsp");
                             conn1.close();
                         }
                         else //wrong password
