@@ -47,7 +47,38 @@
     <servlet>
         <servlet-name>CaptchaImageServlet</servlet-name>
         <servlet-class>controller.CaptchaImageServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>ShopServlet</servlet-name>
+        <servlet-class>controller.ShopServlet</servlet-class>
+        <init-param>
+            <param-name>jdbcClassName</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbUserName</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPassword</param-name>
+            <param-value>password</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbcDriverURL</param-name>
+            <param-value>jdbc:mysql</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbHostName</param-name>
+            <param-value>localhost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbPort</param-name>
+            <param-value>3306</param-value>
+        </init-param>
+        <init-param>
+            <param-name>databaseName</param-name>
+            <param-value>ShopDB</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>CaptchaServlet</servlet-name>
@@ -68,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>CaptchaImageServlet</servlet-name>
         <url-pattern>/CaptchaImageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShopServlet</servlet-name>
+        <url-pattern>/ShopServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

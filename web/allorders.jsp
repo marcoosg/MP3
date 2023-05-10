@@ -9,9 +9,7 @@
     </head>
     <body>
         <% 
-            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            response.setHeader("Pragma", "nocahce");
-            response.setHeader("Expires", "0");
+            
             if(session.getAttribute("validCaptcha")==null)
             {
                 response.sendRedirect("index.jsp");

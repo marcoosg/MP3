@@ -1,16 +1,20 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
 
 <html>
     <head>
         <% 
-            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            response.setHeader("Pragma", "nocahce");
-            response.setHeader("Expires", "0");
+            
             if(session.getAttribute("validCaptcha")==null)
             {
                 response.sendRedirect("index.jsp");
             }
-            else if(session.getAttribute("username")==null)
+            else if (session.getAttribute("username")==null)
             {
                 response.sendRedirect("login.jsp");
             }
@@ -191,6 +195,8 @@
 		.checkout:hover {
 			background-color: darkgreen;
 		}
+                
+                
 	</style>
     </head>
     <body>
@@ -209,30 +215,24 @@
 	<!-- Game section -->
 	<h2 class="gamelisttitle"> Featured Games </h2>
 	<div class="game-section">
-            <div class="game-card">
-		<img src="images/001.jpg" alt="Game 1">
-		<h3>Game 1</h3>
-		<p>$20.00</p>
-		<button class="add-to-cart">Add to cart</button>
-            </div>
-            <div class="game-card">
-		<img src="images/002.jpg" alt="Game 2">
-		<h3>Game 2</h3>
-		<p>$25.00</p>
-		<button class="add-to-cart">Add to cart</button>
-            </div>
-            <div class="game-card">
-		<img src="images/003.jpg" alt="Game 3">
-		<h3>Game 3</h3>
-		<p>$30.00</p>
-		<button class="add-to-cart">Add to cart</button>
-            </div>
-            <div class="game-card">
-		<img src="images/004.jpg" alt="Game 4">
-		<h3>Game 4</h3>
-		<p>$15.00</p>
-            	<button class="add-to-cart">Add to cart</button>
-            </div>
+            <%
+                ResultSet results = (ResultSet)request.getAttribute("results");
+                while (results.next()) 
+                { %>
+                    
+                    <div class="game-card">
+                        <img src="images/<%=results.getString("ITEM_IMG") %>">
+                        <h3><%=results.getString("ITEM_NAME") %></h3>
+                        <p>&#8369 <%=results.getString("ITEM_PRICE") %> .00</p>
+                        <button class="add-to-cart">Add to cart</button>
+                    </div>    
+                        
+                        
+            <%	}
+                results.close();
+            %>
+            
+           
 	</div>
 
 	<!-- Image container -->
@@ -251,24 +251,43 @@
                     </tr>
 		</thead>
 		<tbody>
-                    <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td class="cart-remove">X</td>
-                    </tr>
-                    <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td class="cart-remove">X</td>
-                    </tr>
-                    <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td class="cart-remove">X</td>
-                    </tr>
+                 <%
+                     
+                Connection conn3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
+                try
+                {
+                     if (conn3 != null) 
+                    {
+                        String user = (String)session.getAttribute("username");
+                        String query = "SELECT * FROM CART JOIN ITEM ON CART.ITEM_ID=ITEM.ITEM_ID WHERE USER_ID = ?";
+                        PreparedStatement ps = conn3.prepareStatement(query);
+                        ps.setString(1, user);
+                        ResultSet cart = ps.executeQuery();
+                        while (cart.next()) 
+                        { %>
+                            <tr>
+                                <td><%=cart.getString("ITEM_NAME") %></td>
+                                <td>&#8369 <%=cart.getString("ITEM_PRICE") %> .00</td>
+                                <td><%=cart.getString("QUANTITY") %></td>
+                                <td class="cart-remove">X</td>
+                            </tr>
+
+                    <%  }
+                    cart.close();
+                    }     
+                } 
+                catch (SQLException sqle)
+                {
+                    System.out.println("SQLException error occured - " 
+                                + sqle.getMessage());
+                }
+                
+                
+                
+            %>
+                    
+                    
+                    
                 </tbody>
             </table>
 		<div class="checkoutbox">

@@ -13,8 +13,11 @@
     <body>
         <% 
         
-        
-        //session.setAttribute("captcha",captcha);
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "nocahce");
+            response.setHeader("Expires", "0");
+            
+       
         %>
         <main>
             <div class="navbar">

@@ -3,9 +3,7 @@
 <html>
 <head>
          <% 
-            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            response.setHeader("Pragma", "nocahce");
-            response.setHeader("Expires", "0");
+            
             if(session.getAttribute("validCaptcha")==null)
             {
                 response.sendRedirect("index.jsp");
@@ -103,7 +101,7 @@
 	<div class="box">
 		<h1>Thank You for Ordering!</h1>
 		<div class="btn-box">
-                        <form action="shop.jsp" method="post">
+                        <form action="ShopServlet" method="post">
                             <button class="btn" >Back to Shop</button>
                         </form>
 			

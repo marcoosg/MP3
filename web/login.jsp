@@ -26,7 +26,7 @@
                 <div class="form">
                     <h1>Login to</h1>
                     <h1>GameShop</h1><br>
-                    <form class="login-form" action="LoginServlet" method="get">
+                    <form class="login-form" action="LoginServlet" method="post">
                     <p>USERNAME</p>
                     <input type="text" name="username" placeholder="Username" required/>
                     <p>PASSWORD</p>
