@@ -2,6 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+         <% 
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "nocahce");
+            response.setHeader("Expires", "0");
+            if(session.getAttribute("validCaptcha")==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            else if(session.getAttribute("username")==null)
+            {
+                response.sendRedirect("login.jsp");
+            }
+        %>
 	<title>Thank You for Ordering</title>
 	<style>
 	@font-face {
@@ -81,15 +94,22 @@
 <body>
     <div class="navbar">
             <div>GameShop</div>
-            <button>Logout</button>
+            <form action="LogoutServlet" method="post">
+                <button class="btn">Logout</button>
+            </form>
 	</div>
     
     <div class="container-box">
 	<div class="box">
 		<h1>Thank You for Ordering!</h1>
 		<div class="btn-box">
-			<button class="btn" >Back to Shop</button>
-			<button class="btn" >Logout</button>
+                        <form action="shop.jsp" method="post">
+                            <button class="btn" >Back to Shop</button>
+                        </form>
+			
+			<form action="LogoutServlet" method="post">
+                            <button class="btn">Logout</button>
+                        </form>
 		</div>
 	</div>
 	</div>

@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Captcha verification failed!</h1>
+        <form action="index.jsp">
+            <input type="submit" value="Try again"><br>
+        </form>
     </body>
 </html>

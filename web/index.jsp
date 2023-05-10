@@ -25,13 +25,8 @@
                 
                 <div class="form">
                     <h1>Captcha</h1>
-                    <p>To continue, type the</p>
-                    <p>characters you see in</p>
-                    <p>the picture.</p>
-                    <img src="data:image/png;base64,${imageAsBase64}"/>
-                    <form class="login-form" action="CaptchaServlet" method="post">
-                        <input type="text" name="captchaText" placeholder="Captcha" required/>
-                        <button>Confirm</button>
+                    <form class="login-form" action="CaptchaImageServlet" method="post">
+                        <button>Show Captcha</button>
                     </form>
                 </div>
             </div>

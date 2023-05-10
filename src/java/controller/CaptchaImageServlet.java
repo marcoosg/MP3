@@ -1,42 +1,51 @@
-package controller;
 
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.ByteArrayOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.util.Base64;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpSession;
 import nl.captcha.Captcha;
 
-
-public class CaptchaServlet extends HttpServlet 
+public class CaptchaImageServlet extends HttpServlet 
 {
+    public void init(ServletConfig config) throws ServletException 
+    {
+    
+    
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        response.setContentType("image/png");
+         
+        Captcha captcha = new Captcha.Builder(200, 50)
+        .addText()
+        .addNoise()
+        .addNoise()
+        .addNoise()
+        .addBackground()
+        .build();
+        
+       
         HttpSession session = request.getSession();
-        Captcha captcha = (Captcha) session.getAttribute("captcha");
+        session.setAttribute("captcha",captcha);
+        BufferedImage bufferedImage = captcha.getImage();
         
-        String correctAnswer = captcha.getAnswer();
-        
-        String answer = request.getParameter("captchaText");
-        
-        if (answer.equals(correctAnswer))
-        {
-            response.sendRedirect("login.jsp");
-            session.setAttribute("validCaptcha","true");
-        }
-        else
-        {
-            response.sendRedirect("error01.jsp");
-        }
-        
-        
-        
-        //test
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", output);
+        String imageAsBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
+        request.setAttribute("imageAsBase64", imageAsBase64);
+        request.getRequestDispatcher("captcha.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

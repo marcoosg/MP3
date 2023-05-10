@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>User details are incorrect!</h1>
+        <form action="login.jsp">
+            <input type="submit" value="Try again"><br>
+        </form>
     </body>
 </html>

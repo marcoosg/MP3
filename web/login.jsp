@@ -8,6 +8,15 @@
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <% 
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "nocahce");
+            response.setHeader("Expires", "0");
+            if(session.getAttribute("validCaptcha")==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+        %>
         <main>
             <div class="navbar">
                 <div>GameShop</div>
@@ -17,7 +26,7 @@
                 <div class="form">
                     <h1>Login to</h1>
                     <h1>GameShop</h1><br>
-                    <form class="login-form" action="LoginServlet" method="post">
+                    <form class="login-form" action="LoginServlet" method="get">
                     <p>USERNAME</p>
                     <input type="text" name="username" placeholder="Username" required/>
                     <p>PASSWORD</p>

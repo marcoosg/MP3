@@ -2,6 +2,19 @@
 
 <html>
     <head>
+        <% 
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "nocahce");
+            response.setHeader("Expires", "0");
+            if(session.getAttribute("validCaptcha")==null)
+            {
+                response.sendRedirect("index.jsp");
+            }
+            else if(session.getAttribute("username")==null)
+            {
+                response.sendRedirect("login.jsp");
+            }
+        %>
 	<title>GameShop</title>
 	<style>
                 /* Font */
@@ -184,7 +197,9 @@
 	<!-- Navbar -->
 	<div class="navbar">
             <div>GameShop</div>
-            <button>Logout</button>
+            <form action="LogoutServlet" method="post">
+                <button>Logout</button>
+            </form>
 	</div>
 
         <div class="image-container">
@@ -195,25 +210,25 @@
 	<h2 class="gamelisttitle"> Featured Games </h2>
 	<div class="game-section">
             <div class="game-card">
-		<img src="https://via.placeholder.com/150x200.png?text=Game+1" alt="Game 1">
+		<img src="images/001.jpg" alt="Game 1">
 		<h3>Game 1</h3>
 		<p>$20.00</p>
 		<button class="add-to-cart">Add to cart</button>
             </div>
             <div class="game-card">
-		<img src="https://via.placeholder.com/150x200.png?text=Game+2" alt="Game 2">
+		<img src="images/002.jpg" alt="Game 2">
 		<h3>Game 2</h3>
 		<p>$25.00</p>
 		<button class="add-to-cart">Add to cart</button>
             </div>
             <div class="game-card">
-		<img src="https://via.placeholder.com/150x200.png?text=Game+3" alt="Game 3">
+		<img src="images/003.jpg" alt="Game 3">
 		<h3>Game 3</h3>
 		<p>$30.00</p>
 		<button class="add-to-cart">Add to cart</button>
             </div>
             <div class="game-card">
-		<img src="https://via.placeholder.com/150x200.png?text=Game+4" alt="Game 4">
+		<img src="images/004.jpg" alt="Game 4">
 		<h3>Game 4</h3>
 		<p>$15.00</p>
             	<button class="add-to-cart">Add to cart</button>
@@ -257,8 +272,10 @@
                 </tbody>
             </table>
 		<div class="checkoutbox">
-			<button class="checkout">Proceed to Checkout</button>
-		</div>
+                    <form action="checkout.jsp" method="post">
+                        <button class="checkout">Proceed to Checkout</button>
+                    </form>
+                </div>
 	</div>
         
     </body>
