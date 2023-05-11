@@ -308,7 +308,9 @@
                                     <%=cart.getString("QUANTITY") %>
                                     <a class="qty-buttons" href="CartQuantityServlet?action=increase&quantity=<%=cart.getString("QUANTITY") %>&item=<%=cart.getString("ITEM_ID")%>">+</a>
                                 </td>
-                                <td class="cart-remove">X</td>
+                                <td class="cart-remove">
+                                    <a class="cart-remove" href="RemoveFromCartServlet?item=<%=cart.getString("ITEM_ID")%>">X</a>
+                                </td>
                             </tr>
 
                     <%  }
