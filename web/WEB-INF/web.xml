@@ -84,6 +84,10 @@
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>controller.AddToCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartQuantityServlet</servlet-name>
+        <servlet-class>controller.CartQuantityServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CaptchaServlet</servlet-name>
         <url-pattern>/CaptchaServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartQuantityServlet</servlet-name>
+        <url-pattern>/CartQuantityServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

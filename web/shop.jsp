@@ -197,6 +197,13 @@
 		.checkout:hover {
 			background-color: darkgreen;
 		}
+                .qty-buttons
+                {
+                    color:black;
+                    text-align:center;
+                    font-size: 30px;
+                    text-decoration:none;
+                }
                 
                 
                 
@@ -296,7 +303,11 @@
                             <tr>
                                 <td><%=cart.getString("ITEM_NAME") %></td>
                                 <td>&#8369 <%=cart.getString("ITEM_PRICE") %> .00</td>
-                                <td><%=cart.getString("QUANTITY") %></td>
+                                <td>
+                                    <a class="qty-buttons" href="CartQuantityServlet?action=decrease&quantity=<%=cart.getString("QUANTITY") %>&item=<%=cart.getString("ITEM_ID")%>">-</a> 
+                                    <%=cart.getString("QUANTITY") %>
+                                    <a class="qty-buttons" href="CartQuantityServlet?action=increase&quantity=<%=cart.getString("QUANTITY") %>&item=<%=cart.getString("ITEM_ID")%>">+</a>
+                                </td>
                                 <td class="cart-remove">X</td>
                             </tr>
 
