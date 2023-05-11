@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,28 @@ public class CartQuantityServlet extends HttpServlet
 
                     if (action.equals("decrease")) 
                     {
+                        quantity = quantity - 1;
+                        
+                        if (quantity == 0)
+                        {
+                            String query = "DELETE FROM CART WHERE USER_ID=? AND ITEM_ID=?";
+                            PreparedStatement ps = conn.prepareStatement(query);
+                            ps.setString   (1, user);
+                            ps.setInt (2, item);
+                            ps.execute();
+                            response.sendRedirect("shop.jsp");
+                        }
+                        else
+                        {
+                            String sql = "UPDATE CART SET QUANTITY=? WHERE USER_ID=? AND ITEM_ID=? ";
+                            PreparedStatement preparedStmt = conn.prepareStatement(sql);
+                            preparedStmt.setInt (1, quantity);
+                            preparedStmt.setString   (2, user);
+                            preparedStmt.setInt (3, item);
 
+                            preparedStmt.execute();
+                            response.sendRedirect("shop.jsp");
+                        }
                     }
                 }
                 else 
