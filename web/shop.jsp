@@ -90,6 +90,7 @@
 			text-align: center;
 			height: 365px;
 		}
+                
 
 		.game-card img {
 		    margin-top: 20px;
@@ -198,6 +199,7 @@
 		}
                 
                 
+                
 	</style>
     </head>
     <body>
@@ -217,6 +219,7 @@
 	<h2 class="gamelisttitle"> Featured Games </h2>
 	<div class="game-section">
             <%
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
                 try
                 {
@@ -230,15 +233,18 @@
             %>
                     
                         <div class="game-card">
-                            <img src="images/<%=results.getString("ITEM_IMG") %>">
+                            <img src="images/<%=results.getString("ITEM_IMG")%>" style='height: 80px; width: 80px;'>
                             <h3><%=results.getString("ITEM_NAME") %></h3>
                             <p>&#8369 <%=results.getString("ITEM_PRICE") %> .00</p>
-                            <button class="add-to-cart">Add to cart</button>
+                            <form action="AddToCartServlet?item=<%=results.getString("ITEM_ID")%>&quantity=1" method="post">
+                                <button class="add-to-cart">Add to cart</button>
+                            </form>
+                            
                         </div>    
                         
                         
             <%
-                        
+
                         } 
                         results.close();
                         conn2.close();
@@ -274,6 +280,7 @@
 		</thead>
 		<tbody>
                 <%   
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
                 try
                 {
@@ -302,6 +309,7 @@
                     System.out.println("SQLException error occured - " 
                                 + sqle.getMessage());
                 }
+
                 %>
                 </tbody>
             </table>
