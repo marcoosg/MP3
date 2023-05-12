@@ -173,6 +173,7 @@
 			color: red;
 			font-weight: bold;
 			cursor: pointer;
+                        text-decoration:none;
 		}
 
 		.cart-remove:hover {
@@ -204,6 +205,9 @@
                     font-size: 30px;
                     text-decoration:none;
                 }
+                .qty-buttons:hover {
+			text-decoration: underline;
+		}
                 
                 
                 
@@ -289,6 +293,7 @@
                 <%   
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
+                int total = 0;
                 try
                 {
                      if (conn3 != null) 
@@ -299,7 +304,10 @@
                         ps.setString(1, user);
                         ResultSet cart = ps.executeQuery();
                         while (cart.next()) 
-                        { %>
+                        { 
+                            int initial = Integer.valueOf(cart.getString("ITEM_PRICE"))*Integer.valueOf(cart.getString("QUANTITY"));
+                            total = total + initial;
+                            %>
                             <tr>
                                 <td><%=cart.getString("ITEM_NAME") %></td>
                                 <td>&#8369 <%=cart.getString("ITEM_PRICE") %> .00</td>
@@ -327,6 +335,7 @@
                 </tbody>
             </table>
 		<div class="checkoutbox">
+                    <p>Total: &#8369 <%out.print(Integer.toString(total));%>.00</p>
                     <form action="checkout.jsp" method="post">
                         <button class="checkout">Proceed to Checkout</button>
                     </form>
