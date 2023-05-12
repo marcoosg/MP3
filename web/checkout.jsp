@@ -92,6 +92,9 @@
 <body>
     <div class="navbar">
             <div>GameShop</div>
+            <form action="orders.jsp" method="post">
+                <button>My Orders</button>
+            </form>
             <form action="LogoutServlet" method="post">
                 <button class="btn">Logout</button>
             </form>
@@ -101,6 +104,10 @@
 	<div class="box">
 		<h1>Thank You for Ordering!</h1>
 		<div class="btn-box">
+                        <form action="orders.jsp" method="post">
+                            <button class="btn" >Go to My Orders</button>
+                        </form>
+                    
                         <form action="shop.jsp" method="post">
                             <button class="btn" >Back to Shop</button>
                         </form>

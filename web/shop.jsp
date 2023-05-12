@@ -217,6 +217,9 @@
 	<!-- Navbar -->
 	<div class="navbar">
             <div>GameShop</div>
+            <form action="orders.jsp" method="post">
+                <button>My Orders</button>
+            </form>
             <form action="LogoutServlet" method="post">
                 <button>Logout</button>
             </form>
@@ -336,7 +339,7 @@
             </table>
 		<div class="checkoutbox">
                     <p>Total: &#8369 <%out.print(Integer.toString(total));%>.00</p>
-                    <form action="checkout.jsp" method="post">
+                    <form action="CheckoutServlet" method="post">
                         <button class="checkout">Proceed to Checkout</button>
                     </form>
                 </div>
