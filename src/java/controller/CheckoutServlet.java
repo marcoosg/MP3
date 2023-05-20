@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,18 +27,33 @@ public class CheckoutServlet extends HttpServlet
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn4 = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopDB?autoReconnect=true&useSSL=false","root","password");
             
-            String sql = "INSERT INTO ORDERS SELECT * FROM CART WHERE USER_ID=?";
-            PreparedStatement preparedStmt = conn4.prepareStatement(sql);
-            preparedStmt.setString (1, user);
-            preparedStmt.execute();
-             
-            sql = "DELETE FROM CART WHERE USER_ID=?";
-            PreparedStatement ps = conn4.prepareStatement(sql);
-            ps.setString (1, user);
-            ps.execute();
-             
-             conn4.close();
-             response.sendRedirect("checkout.jsp");
+            String query = "SELECT * FROM CART WHERE USER_ID = ?";
+            PreparedStatement ps1 = conn4.prepareStatement(query);
+            ps1.setString(1, user);
+            ResultSet rs = ps1.executeQuery();
+            
+            if(rs.next()==false)
+            {
+                response.sendRedirect("error03.jsp");
+            }
+            else
+            {
+                String sql = "INSERT INTO ORDERS SELECT * FROM CART WHERE USER_ID=?";
+                PreparedStatement preparedStmt = conn4.prepareStatement(sql);
+                preparedStmt.setString (1, user);
+                preparedStmt.execute();
+
+                sql = "DELETE FROM CART WHERE USER_ID=?";
+                PreparedStatement ps = conn4.prepareStatement(sql);
+                ps.setString (1, user);
+                ps.execute();
+
+                conn4.close();
+                response.sendRedirect("checkout.jsp");
+            }
+            
+            
+            
              
         }
         catch (SQLException sqle)
