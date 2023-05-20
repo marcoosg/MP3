@@ -19,7 +19,7 @@
             <br>
             <h2>The cart is empty!</h2>
             <h3>You haven't added anything to the cart. Please add an item before checking out!</h3>
-            <form action="orders.jsp">
+            <form action="shop.jsp">
                 <input type="submit" value="Go back"><br>
             </form>
             <br>
